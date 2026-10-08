@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EditExpress | Social Media Reels</title>
+    <meta
+      name="description"
+      content="EditExpress creates cinematic social media reels that help brands and creators grow online."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #09090d;
+        --bg-2: #111119;
+        --panel: #141420;
+        --panel-2: #1a1a25;
+        --text: #f5f1ff;
+        --muted: #b9b2d2;
+        --line: rgba(255, 255, 255, 0.08);
+        --purple: #8b5cf6;
+        --purple-2: #c084fc;
+        --red: #ff4d5a;
+        --gold: #f5d76d;
+        --shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+        --radius: 24px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 28%),
+          radial-gradient(circle at bottom right, rgba(255, 77, 90, 0.12), transparent 35%),
+          var(--bg);
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(9, 9, 13, 0.78);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 82px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        box-shadow: 0 15px 30px rgba(139, 92, 246, 0.35);
+        font-size: 0.85rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 0 20px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 20px 32px rgba(139, 92, 246, 0.3);
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,0.02);
+        color: var(--purple-2);
+        text-transform: uppercase;
+        font-size: 0.74rem;
+        letter-spacing: 0.14em;
+        font-weight: 700;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        box-shadow: 0 0 14px rgba(139, 92, 246, 0.75);
+      }
+
+      h1 {
+        margin: 22px 0 18px;
+        font-size: clamp(3rem, 5vw, 5.2rem);
+        line-height: 0.94;
+        letter-spacing: -0.07em;
+      }
+
+      .highlight {
+        background: linear-gradient(135deg, var(--purple-2), var(--red));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 1.08rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 24px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-weight: 700;
+        transition: transform 0.2s ease;
+      }
+
+      .button:hover { transform: translateY(-1px); }
+
+      .button.primary {
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        color: white;
+        border: none;
+        box-shadow: 0 20px 38px rgba(128, 90, 213, 0.38);
+      }
+
+      .button.secondary {
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        margin-top: 32px;
+      }
+
+      .meta-box {
+        min-width: 130px;
+      }
+
+      .meta-box strong {
+        display: block;
+        font-size: 1.8rem;
+        letter-spacing: -0.06em;
+      }
+
+      .meta-box span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .visual-wrap {
+        position: relative;
+      }
+
+      .video-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 30px;
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        box-shadow: var(--shadow);
+      }
+
+      .video-card img {
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+      }
+
+      .floating-badge {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 18px;
+        border-radius: 18px;
+        background: rgba(15, 15, 20, 0.8);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+      }
+
+      .floating-badge.one {
+        left: -26px;
+        bottom: 34px;
+      }
+
+      .floating-badge.two {
+        top: 52px;
+        right: -18px;
+      }
+
+      .badge-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 1.05rem;
+        background: linear-gradient(135deg, rgba(139,92,246,0.22), rgba(255,77,90,0.15));
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .badge-text strong {
+        display: block;
+        font-size: 0.86rem;
+      }
+
+      .badge-text span {
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      section {
+        padding: 30px 0 16px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(2.2rem, 3vw, 3.3rem);
+        letter-spacing: -0.06em;
+      }
+
+      .section-head p {
+        margin: 0;
+        max-width: 560px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .service-card,
+      .project-card,
+      .pricing-card,
+      .testimonial-card {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .service-card {
+        padding: 28px 24px;
+      }
+
+      .service-icon {
+        width: 58px;
+        height: 58px;
+        border-radius: 18px;
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(255,77,90,0.12));
+        border: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .service-card h3 {
+        margin: 22px 0 12px;
+        font-size: 1.5rem;
+      }
+
+      .service-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .project-card {
+        overflow: hidden;
+      }
+
+      .project-image {
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+      }
+
+      .project-card:hover .project-image img {
+        transform: scale(1.05);
+      }
+
+      .project-info {
+        padding: 20px 20px 24px;
+      }
+
+      .project-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--purple-2);
+      }
+
+      .project-info h3 {
+        margin: 18px 0 8px;
+        font-size: 1.4rem;
+      }
+
+      .project-info p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .step-card {
+        padding: 28px 22px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+      }
+
+      .step-number {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        color: white;
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .step-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.3rem;
+      }
+
+      .step-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .pricing-card {
+        padding: 28px 24px;
+      }
+
+      .pricing-card.featured {
+        background: linear-gradient(180deg, rgba(139,92,246,0.08), rgba(255,255,255,0.02));
+        border-color: rgba(139,92,246,0.5);
+      }
+
+      .plan-name {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--purple-2);
+        font-weight: 700;
+      }
+
+      .pricing-card h3 {
+        margin: 22px 0 0;
+        font-size: 2.2rem;
+        letter-spacing: -0.06em;
+      }
+
+      .price {
+        font-size: 2.8rem;
+        letter-spacing: -0.07em;
+        margin: 8px 0 14px;
+      }
+
+      .price small {
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .pricing-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 0;
+        display: grid;
+        gap: 12px;
+        color: var(--muted);
+      }
+
+      .pricing-card li::before {
+        content: "✓";
+        color: var(--purple-2);
+        margin-right: 10px;
+        font-weight: 800;
+      }
+
+      .pricing-card .button {
+        width: 100%;
+        margin-top: 24px;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+
+      .testimonial-card {
+        padding: 24px;
+      }
+
+      .stars { color: #ffca57; letter-spacing: 0.12em; margin-bottom: 16px; }
+
+      .testimonial-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .person {
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        font-weight: 800;
+      }
+
+      .person strong { display: block; }
+
+      .person span {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .cta-section {
+        padding: 80px 0 90px;
+      }
+
+      .cta-box {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        align-items: center;
+        gap: 20px;
+        padding: 36px 30px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(255,77,90,0.1));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .cta-box h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.06em;
+      }
+
+      .cta-box p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .cta-box .button {
+        justify-self: end;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        padding: 28px 0 54px;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        color: var(--muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 20px;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .portfolio-grid,
+        .pricing-grid,
+        .services-grid,
+        .testimonials-grid,
+        .process-grid,
+        .cta-box {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-box .button {
+          justify-self: start;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 82px;
+          left: 16px;
+          right: 16px;
+          background: rgba(13, 13, 18, 0.98);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          padding: 18px;
+          flex-direction: column;
+          align-items: flex-start;
+          display: none;
+        }
+
+        .nav-links.active { display: flex; }
+
+        .menu-toggle {
+          display: inline-flex;
+          width: 42px;
+          height: 42px;
+          border-radius: 12px;
+          align-items: center;
+          justify-content: center;
+          color: var(--text);
+          border: 1px solid var(--line);
+          background: rgba(255,255,255,0.02);
+          font-size: 1.3rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .services-grid,
+        .portfolio-grid,
+        .pricing-grid,
+        .testimonials-grid,
+        .process-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .video-card img {
+          height: 440px;
+        }
+
+        .floating-badge.one {
+          left: 14px;
+          bottom: 14px;
+        }
+
+        .floating-badge.two {
+          right: 10px;
+          top: 18px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#" class="brand">
+          <span class="brand-mark">E</span>
+          <span>EditExpress</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#contact" class="nav-cta">Book a Reel</a>
+
+        <button id="menuToggle" class="menu-toggle" aria-label="Menu">☰</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Luxury social media editing</span>
+            <h1>
+              We craft cinematic
+              <span class="highlight">reels</span>
+              that stop the scroll.
+            </h1>
+            <p>
+              EditExpress helps brands, creators, and businesses turn ordinary footage
+              into premium short-form content that boosts engagement, attention, and conversions.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#portfolio" class="button primary">View Portfolio</a>
+              <a href="#pricing" class="button secondary">See Pricing</a>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>500+</strong>
+                <span>Reels delivered</span>
+              </div>
+              <div class="meta-box">
+                <strong>4.9/5</strong>
+                <span>Client satisfaction</span>
+              </div>
+              <div class="meta-box">
+                <strong>3x</strong>
+                <span>Faster growth</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual-wrap">
+            <div class="video-card">
+              <img
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+                alt="Luxury reel editing"
+              />
+            </div>
+
+            <div class="floating-badge one">
+              <div class="badge-icon">▶</div>
+              <div class="badge-text">
+                <strong>Engagement boost</strong>
+                <span>+180% average lift</span>
+              </div>
+            </div>
+
+            <div class="floating-badge two">
+              <div class="badge-icon">⚡</div>
+              <div class="badge-text">
+                <strong>Fast delivery</strong>
+                <span>72h turnaround</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-head">
+            <h2>What we do</h2>
+            <p>
+              From concept to final cut, EditExpress builds high-converting short-form content
+              that looks premium and performs on social platforms.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-icon">🎬</div>
+              <h3>Reel Production</h3>
+              <p>
+                Scripted storytelling, cinematic shot planning, and mood-driven editing tailored
+                for your brand or personal content.
+              </p>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">✂️</div>
+              <h3>Advanced Editing</h3>
+              <p>
+                Smooth transitions, trend-aware edits, captions, color grading, text overlays,
+                sound design, and dynamic motion graphics.
+              </p>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">📈</div>
+              <h3>Growth Strategy</h3>
+              <p>
+                Hook-driven creatives and platform-first content systems built to increase reach,
+                retention, and clicks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div class="container">
+          <div class="section-head">
+            <h2>Recent work</h2>
+            <p>
+              We create reels for fashion, fitness, lifestyle, SaaS, product branding, and creators.
+            </p>
+          </div>
+
+          <div class="portfolio-grid">
+            <article class="project-card">
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
+                  alt="Luxury fashion reel"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Fashion</span>
+                <h3>Luxury Brand Story</h3>
+                <p>
+                  High-end visual editing and product storytelling crafted to elevate premium brand presence.
+                </p>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80"
+                  alt="Fitness creator reel"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Fitness</span>
+                <h3>Transformation Reel</h3>
+                <p>
+                  Fast-paced editing built to hold attention and increase watch time across social platforms.
+                </p>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
+                  alt="Startup content"
+                />
+              </div>
+              <div class="project-info">
+                <span class="project-tag">Startup</span>
+                <h3>Product Promo Campaign</h3>
+                <p>
+                  Conversion-focused edits that explain your offer quickly and turn viewers into leads.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="process">
+        <div class="container">
+          <div class="section-head">
+            <h2>How we work</h2>
+            <p>
+              A smooth, strategic workflow designed to keep your content consistent and scalable.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3>Discover</h3>
+              <p>
+                We understand your brand, audience, style, and the exact outcome you want.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3>Plan</h3>
+              <p>
+                We build the concept, hook, pacing, and storyline around what performs best.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3>Edit</h3>
+              <p>
+                We edit your footage with premium visuals, sound, motion graphics, and captions.
+              </p>
+            </div>
+
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <h3>Deliver</h3>
+              <p>
+                We optimize every reel for social platforms and deliver a polished final result.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <div class="container">
+          <div class="section-head">
+            <h2>Simple pricing</h2>
+            <p>
+              Flexible packages for creators, businesses, and growing brands.
+            </p>
+          </div>
+
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <span class="plan-name">Starter</span>
+              <h3>4 Reels</h3>
+              <div class="price">$399 <small>/month</small></div>
+              <ul>
+                <li>Concept & scripting</li>
+                <li>Editing & captions</li>
+                <li>2 revisions</li>
+                <li>Social-ready export</li>
+              </ul>
+              <a href="#contact" class="button secondary">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+              <span class="plan-name">Growth</span>
+              <h3>12 Reels</h3>
+              <div class="price">$899 <small>/month</small></div>
+              <ul>
+                <li>Everything in Starter</li>
+                <li>Monthly content strategy</li>
+                <li>Priority turnaround</li>
+                <li>Growth-focused creative</li>
+              </ul>
+              <a href="#contact" class="button primary">Most Popular</a>
+            </div>
+
+            <div class="pricing-card">
+              <span class="plan-name">Scale</span>
+              <h3>Unlimited</h3>
+              <div class="price">$1,799 <small>/month</small></div>
+              <ul>
+                <li>Dedicated editor</li>
+                <li>Campaign planning</li>
+                <li>Performance support</li>
+                <li>Custom creative cadence</li>
+              </ul>
+              <a href="#contact" class="button secondary">Book a Call</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="reviews">
+        <div class="container">
+          <div class="section-head">
+            <h2>Client feedback</h2>
+            <p>
+              Trusted by brands and creators who want premium content that actually performs.
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “EditExpress gave our brand the premium look we were missing. Our engagement
+                jumped within days of posting the first reel.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">A</div>
+                <div>
+                  <strong>Aisha Khan</strong>
+                  <span>Brand Founder</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “The storytelling and pacing were excellent. Their edits felt clean, luxury,
+                and social-first — exactly what our audience wanted.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">J</div>
+                <div>
+                  <strong>John Martin</strong>
+                  <span>Creator</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="testimonial-card">
+              <div class="stars">★★★★★</div>
+              <p>
+                “Fast delivery, stunning visuals, and very easy communication. We got
+                a polished content system without the stress.”
+              </p>
+
+              <div class="person">
+                <div class="avatar">S</div>
+                <div>
+                  <strong>Sara Lewis</strong>
+                  <span>Marketing Lead</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" id="contact">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h2>Ready to elevate your brand with premium reels?</h2>
+              <p>
+                Let EditExpress create content that looks luxurious, captures attention, and
+                helps your audience convert.
+              </p>
+            </div>
+
+            <a
+              href="mailto:editexpress202@gmail.com"
+              class="button primary"
+            >
+              editexpress202@gmail.com
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="brand">
+          <span class="brand-mark">E</span>
+          <span>EditExpress</span>
+        </div>
+
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <span>© <span id="year"></span> EditExpress</span>
+      </div>
+    </footer>
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
