@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EditExpress | Social Media Reels</title>
+    <title>EditExpress | Premium Reel Editing Studio</title>
     <meta
       name="description"
-      content="EditExpress creates cinematic social media reels that help brands and creators grow online."
+      content="EditExpress creates elevated, cinematic social media reels for brands, creators, and businesses."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,55 +16,54 @@
     />
     <style>
       :root {
-        --bg: #09090d;
-        --bg-2: #111119;
-        --panel: #141420;
-        --panel-2: #1a1a25;
-        --text: #f5f1ff;
-        --muted: #b9b2d2;
-        --line: rgba(255, 255, 255, 0.08);
-        --purple: #8b5cf6;
-        --purple-2: #c084fc;
+        --bg: #05070d;
+        --bg-soft: #0e1018;
+        --panel: rgba(18, 19, 29, 0.94);
+        --panel-2: rgba(22, 25, 38, 0.96);
+        --text: #f4f3ff;
+        --muted: #b3abc9;
+        --line: rgba(255,255,255,0.08);
+        --purple: #7a5cff;
+        --purple-light: #aa8bff;
         --red: #ff4d5a;
-        --gold: #f5d76d;
-        --shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
-        --radius: 24px;
+        --red-soft: #ff7d66;
+        --gold: #ffc857;
+        --success: #7ef0c8;
+        --shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        --radius: 26px;
       }
 
       * { box-sizing: border-box; }
-
       html { scroll-behavior: smooth; }
-
       body {
         margin: 0;
         font-family: "Inter", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 28%),
-          radial-gradient(circle at bottom right, rgba(255, 77, 90, 0.12), transparent 35%),
-          var(--bg);
+          radial-gradient(circle at top left, rgba(122, 92, 255, 0.16), transparent 28%),
+          radial-gradient(circle at 80% 20%, rgba(255, 77, 90, 0.12), transparent 30%),
+          linear-gradient(180deg, var(--bg), #090b11 30%, #0d1117 100%);
       }
 
-      img {
-        max-width: 100%;
-        display: block;
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 30px 30px;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
       }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-      }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+      .container { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
       .topbar {
         position: sticky;
         top: 0;
-        z-index: 50;
-        background: rgba(9, 9, 13, 0.78);
+        z-index: 60;
+        background: rgba(5,7,13,0.76);
         backdrop-filter: blur(16px);
         border-bottom: 1px solid var(--line);
       }
@@ -81,7 +80,7 @@
         align-items: center;
         gap: 12px;
         font-weight: 800;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
       }
 
@@ -92,8 +91,8 @@
         display: grid;
         place-items: center;
         background: linear-gradient(135deg, var(--purple), var(--red));
-        box-shadow: 0 15px 30px rgba(139, 92, 246, 0.35);
-        font-size: 0.85rem;
+        color: white;
+        box-shadow: 0 16px 35px rgba(122,92,255,0.35);
       }
 
       .nav-links {
@@ -103,34 +102,52 @@
         color: var(--muted);
         font-size: 0.96rem;
       }
-
+      .nav-links a { transition: color 0.2s ease; }
       .nav-links a:hover { color: var(--text); }
 
-      .nav-cta {
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .nav-cta, .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 48px;
-        padding: 0 20px;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--purple), var(--red));
-        color: white;
         font-weight: 700;
-        box-shadow: 0 20px 32px rgba(139, 92, 246, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
+      .nav-cta {
+        min-height: 46px;
+        padding: 0 18px;
+        background: linear-gradient(135deg, var(--purple), var(--red));
+        color: white;
+        box-shadow: 0 15px 30px rgba(122,92,255,0.35);
+      }
+
+      .nav-cta:hover, .button:hover { transform: translateY(-1px); }
       .menu-toggle {
         display: none;
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.03);
+        border: 1px solid var(--line);
+        color: var(--text);
+        font-size: 1.3rem;
       }
 
       .hero {
-        padding: 72px 0 48px;
+        padding: 74px 0 40px;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 48px;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 42px;
         align-items: center;
       }
 
@@ -138,15 +155,15 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        padding: 10px 14px;
         border-radius: 999px;
+        padding: 10px 14px;
         border: 1px solid var(--line);
         background: rgba(255,255,255,0.02);
-        color: var(--purple-2);
+        color: var(--purple-light);
         text-transform: uppercase;
-        font-size: 0.74rem;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.12em;
         font-weight: 700;
+        font-size: 0.72rem;
       }
 
       .eyebrow::before {
@@ -154,19 +171,19 @@
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--purple), var(--red));
-        box-shadow: 0 0 14px rgba(139, 92, 246, 0.75);
+        background: linear-gradient(135deg, var(--purple) 0%, var(--red) 100%);
+        box-shadow: 0 0 16px rgba(122,92,255,0.8);
       }
 
       h1 {
-        margin: 22px 0 18px;
-        font-size: clamp(3rem, 5vw, 5.2rem);
+        margin: 20px 0 18px;
+        font-size: clamp(3rem, 5vw, 5.4rem);
+        letter-spacing: -0.08em;
         line-height: 0.94;
-        letter-spacing: -0.07em;
       }
 
       .highlight {
-        background: linear-gradient(135deg, var(--purple-2), var(--red));
+        background: linear-gradient(135deg, #d4c8ff 0%, var(--purple-light) 20%, var(--red-soft) 100%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -175,65 +192,52 @@
       .hero p {
         max-width: 620px;
         color: var(--muted);
-        line-height: 1.8;
         font-size: 1.08rem;
+        line-height: 1.8;
       }
 
       .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 16px;
+        gap: 14px;
         margin-top: 30px;
       }
 
       .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
         min-height: 54px;
         padding: 0 24px;
-        border-radius: 999px;
-        border: 1px solid var(--line);
-        font-weight: 700;
-        transition: transform 0.2s ease;
       }
-
-      .button:hover { transform: translateY(-1px); }
-
       .button.primary {
         background: linear-gradient(135deg, var(--purple), var(--red));
         color: white;
-        border: none;
-        box-shadow: 0 20px 38px rgba(128, 90, 213, 0.38);
+        box-shadow: 0 20px 38px rgba(122,92,255,0.35);
       }
-
       .button.secondary {
         background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
         color: var(--text);
       }
 
-      .meta-row {
+      .hero-meta {
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
-        margin-top: 32px;
+        margin-top: 34px;
       }
 
       .meta-box {
         min-width: 130px;
       }
-
       .meta-box strong {
         display: block;
         font-size: 1.8rem;
         letter-spacing: -0.06em;
       }
-
       .meta-box span {
         display: block;
         margin-top: 6px;
         color: var(--muted);
-        font-size: 0.8rem;
+        font-size: 0.78rem;
       }
 
       .visual-wrap {
@@ -242,99 +246,85 @@
 
       .video-card {
         position: relative;
-        overflow: hidden;
         border-radius: 30px;
+        overflow: hidden;
         border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+        background: rgba(255,255,255,0.02);
         box-shadow: var(--shadow);
       }
-
       .video-card img {
         width: 100%;
         height: 620px;
         object-fit: cover;
+        filter: saturate(1.1) contrast(1.08);
       }
 
-      .floating-badge {
+      .floating-card {
         position: absolute;
         display: flex;
         align-items: center;
         gap: 12px;
         padding: 14px 18px;
         border-radius: 18px;
-        background: rgba(15, 15, 20, 0.8);
+        background: rgba(6, 10, 15, 0.76);
         border: 1px solid var(--line);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 20px 46px rgba(0,0,0,0.45);
       }
-
-      .floating-badge.one {
-        left: -26px;
-        bottom: 34px;
-      }
-
-      .floating-badge.two {
-        top: 52px;
-        right: -18px;
-      }
-
-      .badge-icon {
-        width: 40px;
-        height: 40px;
+      .floating-card.one { left: -28px; bottom: 32px; }
+      .floating-card.two { right: -20px; top: 52px; }
+      .mini-icon {
+        width: 42px;
+        height: 42px;
         border-radius: 12px;
         display: grid;
         place-items: center;
-        font-size: 1.05rem;
-        background: linear-gradient(135deg, rgba(139,92,246,0.22), rgba(255,77,90,0.15));
+        background: linear-gradient(135deg, rgba(122,92,255,0.22), rgba(255,77,90,0.18));
         border: 1px solid rgba(255,255,255,0.08);
       }
-
-      .badge-text strong {
-        display: block;
-        font-size: 0.86rem;
-      }
-
-      .badge-text span {
-        color: var(--muted);
-        font-size: 0.72rem;
-      }
+      .mini-text strong { display: block; font-size: 0.84rem; }
+      .mini-text span { color: var(--muted); font-size: 0.72rem; }
 
       section {
-        padding: 30px 0 16px;
+        padding: 34px 0 12px;
       }
 
       .section-head {
         display: flex;
         justify-content: space-between;
-        gap: 18px;
         align-items: end;
+        gap: 18px;
         margin-bottom: 28px;
       }
-
       .section-head h2 {
         margin: 0;
         font-size: clamp(2.2rem, 3vw, 3.3rem);
-        letter-spacing: -0.06em;
+        letter-spacing: -0.07em;
       }
-
       .section-head p {
         margin: 0;
-        max-width: 560px;
         color: var(--muted);
-        line-height: 1.75;
+        max-width: 560px;
+        line-height: 1.8;
       }
 
-      .services-grid {
+      .services-grid,
+      .showcase-grid,
+      .stats-grid,
+      .pricing-grid,
+      .testimonials-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 22px;
       }
 
-      .service-card,
-      .project-card,
-      .pricing-card,
-      .testimonial-card {
-        background: rgba(255,255,255,0.02);
+      .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .showcase-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+      .card {
+        background: rgba(255,255,255,0.025);
         border: 1px solid var(--line);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
@@ -343,81 +333,79 @@
       .service-card {
         padding: 28px 24px;
       }
-
       .service-icon {
-        width: 58px;
-        height: 58px;
+        width: 60px;
+        height: 60px;
         border-radius: 18px;
         display: grid;
         place-items: center;
         font-size: 1.5rem;
-        background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(255,77,90,0.12));
+        background: linear-gradient(135deg, rgba(122,92,255,0.18), rgba(255,77,90,0.12));
         border: 1px solid rgba(255,255,255,0.08);
       }
-
       .service-card h3 {
         margin: 22px 0 12px;
         font-size: 1.5rem;
       }
-
       .service-card p {
         margin: 0;
         color: var(--muted);
         line-height: 1.75;
       }
 
-      .portfolio-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
-      .project-card {
+      .showcase-card {
         overflow: hidden;
       }
-
-      .project-image {
+      .showcase-image {
+        position: relative;
         aspect-ratio: 4 / 5;
         overflow: hidden;
       }
-
-      .project-image img {
+      .showcase-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         transition: transform 0.35s ease;
       }
-
-      .project-card:hover .project-image img {
-        transform: scale(1.05);
-      }
-
-      .project-info {
+      .showcase-card:hover .showcase-image img { transform: scale(1.05); }
+      .showcase-info {
         padding: 20px 20px 24px;
       }
-
-      .project-tag {
+      .badge {
         display: inline-flex;
         align-items: center;
         padding: 8px 12px;
         border-radius: 999px;
         border: 1px solid var(--line);
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
+        color: var(--purple-light);
         text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.66rem;
         font-weight: 700;
-        color: var(--purple-2);
       }
-
-      .project-info h3 {
-        margin: 18px 0 8px;
+      .showcase-info h3 {
+        margin: 16px 0 8px;
         font-size: 1.4rem;
       }
-
-      .project-info p {
+      .showcase-info p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.7;
+        line-height: 1.75;
+      }
+
+      .stat-box {
+        padding: 28px 20px;
+        text-align: center;
+      }
+      .stat-box strong {
+        display: block;
+        font-size: 2.3rem;
+        letter-spacing: -0.07em;
+      }
+      .stat-box span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
       }
 
       .process-grid {
@@ -425,81 +413,62 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 20px;
       }
-
-      .step-card {
-        padding: 28px 22px;
-        background: rgba(255,255,255,0.02);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
+      .process-card {
+        padding: 28px 24px;
       }
-
       .step-number {
         width: 42px;
         height: 42px;
+        border-radius: 12px;
         display: grid;
         place-items: center;
-        border-radius: 12px;
         background: linear-gradient(135deg, var(--purple), var(--red));
         color: white;
         font-weight: 800;
         margin-bottom: 18px;
       }
-
-      .step-card h3 {
+      .process-card h3 {
         margin: 0 0 10px;
-        font-size: 1.3rem;
+        font-size: 1.25rem;
       }
-
-      .step-card p {
+      .process-card p {
         margin: 0;
         color: var(--muted);
         line-height: 1.75;
       }
 
-      .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
       .pricing-card {
         padding: 28px 24px;
       }
-
       .pricing-card.featured {
-        background: linear-gradient(180deg, rgba(139,92,246,0.08), rgba(255,255,255,0.02));
-        border-color: rgba(139,92,246,0.5);
+        background: linear-gradient(180deg, rgba(122,92,255,0.08), rgba(255,255,255,0.02));
+        border-color: rgba(122,92,255,0.5);
       }
-
       .plan-name {
         display: inline-flex;
-        border: 1px solid var(--line);
         border-radius: 999px;
         padding: 8px 12px;
-        font-size: 0.7rem;
-        letter-spacing: 0.12em;
+        border: 1px solid var(--line);
         text-transform: uppercase;
-        color: var(--purple-2);
+        letter-spacing: 0.12em;
+        font-size: 0.68rem;
+        color: var(--purple-light);
         font-weight: 700;
       }
-
       .pricing-card h3 {
         margin: 22px 0 0;
         font-size: 2.2rem;
         letter-spacing: -0.06em;
       }
-
       .price {
-        font-size: 2.8rem;
-        letter-spacing: -0.07em;
         margin: 8px 0 14px;
+        font-size: 2.7rem;
+        letter-spacing: -0.07em;
       }
-
       .price small {
-        color: var(--muted);
         font-size: 1rem;
+        color: var(--muted);
       }
-
       .pricing-card ul {
         list-style: none;
         padding: 0;
@@ -508,44 +477,36 @@
         gap: 12px;
         color: var(--muted);
       }
-
       .pricing-card li::before {
         content: "✓";
-        color: var(--purple-2);
+        color: var(--purple-light);
         margin-right: 10px;
         font-weight: 800;
       }
-
       .pricing-card .button {
         width: 100%;
         margin-top: 24px;
       }
 
-      .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 22px;
-      }
-
       .testimonial-card {
         padding: 24px;
       }
-
-      .stars { color: #ffca57; letter-spacing: 0.12em; margin-bottom: 16px; }
-
+      .stars {
+        color: var(--gold);
+        letter-spacing: 0.12em;
+        margin-bottom: 16px;
+      }
       .testimonial-card p {
         margin: 0;
         color: var(--muted);
-        line-height: 1.8;
+        line-height: 1.85;
       }
-
       .person {
-        margin-top: 24px;
+        margin-top: 22px;
         display: flex;
         align-items: center;
         gap: 14px;
       }
-
       .avatar {
         width: 48px;
         height: 48px;
@@ -555,93 +516,90 @@
         background: linear-gradient(135deg, var(--purple), var(--red));
         font-weight: 800;
       }
-
       .person strong { display: block; }
-
-      .person span {
-        color: var(--muted);
-        font-size: 0.8rem;
-      }
+      .person span { color: var(--muted); font-size: 0.8rem; }
 
       .cta-section {
         padding: 80px 0 90px;
       }
-
       .cta-box {
         display: grid;
-        grid-template-columns: 1.3fr 0.7fr;
+        grid-template-columns: 1.2fr 0.8fr;
         align-items: center;
-        gap: 20px;
-        padding: 36px 30px;
-        border-radius: 28px;
-        background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(255,77,90,0.1));
+        gap: 24px;
+        background: linear-gradient(135deg, rgba(122,92,255,0.12), rgba(255,77,90,0.1));
         border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 36px 30px;
         box-shadow: var(--shadow);
       }
-
       .cta-box h2 {
         margin: 0;
-        font-size: clamp(2rem, 3vw, 3rem);
-        letter-spacing: -0.06em;
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        letter-spacing: -0.07em;
       }
-
       .cta-box p {
         margin: 12px 0 0;
         color: var(--muted);
-        line-height: 1.7;
+        line-height: 1.8;
+      }
+      .cta-actions {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 12px;
       }
 
-      .cta-box .button {
-        justify-self: end;
+      .social-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 22px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+      .social-btn.whatsapp {
+        background: linear-gradient(135deg, #25d366, #1ebc59);
+        color: white;
+        box-shadow: 0 18px 30px rgba(37,211,102,0.28);
+      }
+      .social-btn.instagram {
+        background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af);
+        color: white;
+        box-shadow: 0 18px 30px rgba(221,42,123,0.28);
       }
 
       .footer {
         border-top: 1px solid var(--line);
-        padding: 28px 0 54px;
+        padding: 30px 0 54px;
       }
-
       .footer-inner {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         gap: 16px;
         color: var(--muted);
       }
-
       .footer-links {
         display: flex;
         gap: 20px;
       }
 
       @media (max-width: 980px) {
-        .hero-grid,
-        .portfolio-grid,
-        .pricing-grid,
-        .services-grid,
-        .testimonials-grid,
-        .process-grid,
-        .cta-box {
+        .hero-grid, .services-grid, .showcase-grid, .pricing-grid, .testimonials-grid, .stats-grid, .process-grid, .cta-box {
           grid-template-columns: 1fr 1fr;
         }
-
-        .hero-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .cta-box {
-          grid-template-columns: 1fr;
-        }
-
-        .cta-box .button {
-          justify-self: start;
-        }
+        .hero-grid { grid-template-columns: 1fr; }
+        .cta-box { grid-template-columns: 1fr; }
+        .cta-actions { justify-content: flex-start; }
 
         .nav-links {
           position: absolute;
-          top: 82px;
           left: 16px;
           right: 16px;
-          background: rgba(13, 13, 18, 0.98);
+          top: 82px;
+          background: rgba(9, 11, 18, 0.96);
           border: 1px solid var(--line);
           border-radius: 18px;
           padding: 18px;
@@ -649,62 +607,26 @@
           align-items: flex-start;
           display: none;
         }
-
         .nav-links.active { display: flex; }
-
-        .menu-toggle {
-          display: inline-flex;
-          width: 42px;
-          height: 42px;
-          border-radius: 12px;
-          align-items: center;
-          justify-content: center;
-          color: var(--text);
-          border: 1px solid var(--line);
-          background: rgba(255,255,255,0.02);
-          font-size: 1.3rem;
-        }
+        .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
       }
 
       @media (max-width: 640px) {
-        .services-grid,
-        .portfolio-grid,
-        .pricing-grid,
-        .testimonials-grid,
-        .process-grid {
+        .services-grid, .showcase-grid, .pricing-grid, .testimonials-grid, .stats-grid, .process-grid {
           grid-template-columns: 1fr;
         }
-
-        .section-head {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .video-card img {
-          height: 440px;
-        }
-
-        .floating-badge.one {
-          left: 14px;
-          bottom: 14px;
-        }
-
-        .floating-badge.two {
-          right: 10px;
-          top: 18px;
-        }
-
-        .footer-inner {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+        .section-head { flex-direction: column; align-items: flex-start; }
+        .video-card img { height: 440px; }
+        .floating-card.one { left: 12px; bottom: 12px; }
+        .floating-card.two { right: 10px; top: 18px; }
+        .footer-inner { flex-direction: column; align-items: flex-start; }
       }
     </style>
   </head>
   <body>
     <header class="topbar">
       <div class="container nav">
-        <a href="#" class="brand">
+        <a href="#" class="brand" aria-label="EditExpress home">
           <span class="brand-mark">E</span>
           <span>EditExpress</span>
         </a>
@@ -718,9 +640,11 @@
           <a href="#contact">Contact</a>
         </nav>
 
-        <a href="#contact" class="nav-cta">Book a Reel</a>
+        <div class="nav-actions">
+          <a href="https://www.instagram.com/editexpress_2025" target="_blank" class="nav-cta">Instagram</a>
+        </div>
 
-        <button id="menuToggle" class="menu-toggle" aria-label="Menu">☰</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
       </div>
     </header>
 
@@ -728,34 +652,34 @@
       <section class="hero">
         <div class="container hero-grid">
           <div>
-            <span class="eyebrow">Luxury social media editing</span>
+            <span class="eyebrow">Premium reel studio</span>
             <h1>
-              We craft cinematic
+              We build cinematic
               <span class="highlight">reels</span>
-              that stop the scroll.
+              that turn attention into growth.
             </h1>
             <p>
-              EditExpress helps brands, creators, and businesses turn ordinary footage
-              into premium short-form content that boosts engagement, attention, and conversions.
+              EditExpress creates high-impact social media reels for brands, creators, and businesses
+              that want premium visuals, stronger retention, and more conversions.
             </p>
 
             <div class="hero-actions">
-              <a href="#portfolio" class="button primary">View Portfolio</a>
+              <a href="#portfolio" class="button primary">View Work</a>
               <a href="#pricing" class="button secondary">See Pricing</a>
             </div>
 
-            <div class="meta-row">
+            <div class="hero-meta">
               <div class="meta-box">
                 <strong>500+</strong>
                 <span>Reels delivered</span>
               </div>
               <div class="meta-box">
                 <strong>4.9/5</strong>
-                <span>Client satisfaction</span>
+                <span>Client rating</span>
               </div>
               <div class="meta-box">
                 <strong>3x</strong>
-                <span>Faster growth</span>
+                <span>Average growth</span>
               </div>
             </div>
           </div>
@@ -763,22 +687,22 @@
           <div class="visual-wrap">
             <div class="video-card">
               <img
-                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
-                alt="Luxury reel editing"
+                src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80"
+                alt="Premium content editing"
               />
             </div>
 
-            <div class="floating-badge one">
-              <div class="badge-icon">▶</div>
-              <div class="badge-text">
-                <strong>Engagement boost</strong>
+            <div class="floating-card one">
+              <div class="mini-icon">▶</div>
+              <div class="mini-text">
+                <strong>Engagement spike</strong>
                 <span>+180% average lift</span>
               </div>
             </div>
 
-            <div class="floating-badge two">
-              <div class="badge-icon">⚡</div>
-              <div class="badge-text">
+            <div class="floating-card two">
+              <div class="mini-icon">⚡</div>
+              <div class="mini-text">
                 <strong>Fast delivery</strong>
                 <span>72h turnaround</span>
               </div>
@@ -792,38 +716,64 @@
           <div class="section-head">
             <h2>What we do</h2>
             <p>
-              From concept to final cut, EditExpress builds high-converting short-form content
-              that looks premium and performs on social platforms.
+              We transform raw footage into premium short-form stories designed for attention, retention, and conversion.
             </p>
           </div>
 
           <div class="services-grid">
-            <div class="service-card">
+            <article class="card service-card">
               <div class="service-icon">🎬</div>
               <h3>Reel Production</h3>
               <p>
-                Scripted storytelling, cinematic shot planning, and mood-driven editing tailored
-                for your brand or personal content.
+                Story-led, cinematic short-form videos crafted to represent your brand with clarity and style.
               </p>
-            </div>
+            </article>
 
-            <div class="service-card">
+            <article class="card service-card">
               <div class="service-icon">✂️</div>
-              <h3>Advanced Editing</h3>
+              <h3>Professional Editing</h3>
               <p>
-                Smooth transitions, trend-aware edits, captions, color grading, text overlays,
-                sound design, and dynamic motion graphics.
+                Premium cuts, transitions, text overlays, motion graphics, sound design, and platform-ready exports.
               </p>
-            </div>
+            </article>
 
-            <div class="service-card">
+            <article class="card service-card">
               <div class="service-icon">📈</div>
-              <h3>Growth Strategy</h3>
+              <h3>Growth Content</h3>
               <p>
-                Hook-driven creatives and platform-first content systems built to increase reach,
-                retention, and clicks.
+                Hook-driven scripts and creative structure built to improve views, retention, and lead generation.
               </p>
-            </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <h2>Brand impact</h2>
+            <p>
+              We help brands and creators create scroll-stopping content with premium presentation and measurable results.
+            </p>
+          </div>
+
+          <div class="stats-grid">
+            <article class="card stat-box">
+              <strong>1.8k+</strong>
+              <span>Hours edited</span>
+            </article>
+            <article class="card stat-box">
+              <strong>92%</strong>
+              <span>Client retention</span>
+            </article>
+            <article class="card stat-box">
+              <strong>42%</strong>
+              <span>More watch time</span>
+            </article>
+            <article class="card stat-box">
+              <strong>24/7</strong>
+              <span>Creative support</span>
+            </article>
           </div>
         </div>
       </section>
@@ -833,55 +783,46 @@
           <div class="section-head">
             <h2>Recent work</h2>
             <p>
-              We create reels for fashion, fitness, lifestyle, SaaS, product branding, and creators.
+              Social-first editing for fashion, lifestyle, business, and creator brands looking to stand out.
             </p>
           </div>
 
-          <div class="portfolio-grid">
-            <article class="project-card">
-              <div class="project-image">
-                <img
-                  src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80"
-                  alt="Luxury fashion reel"
-                />
+          <div class="showcase-grid">
+            <article class="card showcase-card">
+              <div class="showcase-image">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Luxury fashion reel" />
               </div>
-              <div class="project-info">
-                <span class="project-tag">Fashion</span>
+              <div class="showcase-info">
+                <span class="badge">Fashion</span>
                 <h3>Luxury Brand Story</h3>
                 <p>
-                  High-end visual editing and product storytelling crafted to elevate premium brand presence.
+                  Premium product storytelling designed to feel aspirational and persuasive.
                 </p>
               </div>
             </article>
 
-            <article class="project-card">
-              <div class="project-image">
-                <img
-                  src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80"
-                  alt="Fitness creator reel"
-                />
+            <article class="card showcase-card">
+              <div class="showcase-image">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" alt="Fitness reel" />
               </div>
-              <div class="project-info">
-                <span class="project-tag">Fitness</span>
+              <div class="showcase-info">
+                <span class="badge">Fitness</span>
                 <h3>Transformation Reel</h3>
                 <p>
-                  Fast-paced editing built to hold attention and increase watch time across social platforms.
+                  Fast-paced edits crafted to keep viewers engaged and motivated through every second.
                 </p>
               </div>
             </article>
 
-            <article class="project-card">
-              <div class="project-image">
-                <img
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80"
-                  alt="Startup content"
-                />
+            <article class="card showcase-card">
+              <div class="showcase-image">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Business reel" />
               </div>
-              <div class="project-info">
-                <span class="project-tag">Startup</span>
-                <h3>Product Promo Campaign</h3>
+              <div class="showcase-info">
+                <span class="badge">Business</span>
+                <h3>Brand Promo</h3>
                 <p>
-                  Conversion-focused edits that explain your offer quickly and turn viewers into leads.
+                  Conversion-focused reels built to explain value fast and leave a strong impression.
                 </p>
               </div>
             </article>
@@ -894,42 +835,42 @@
           <div class="section-head">
             <h2>How we work</h2>
             <p>
-              A smooth, strategic workflow designed to keep your content consistent and scalable.
+              A clear, creative workflow that keeps quality high and deadlines smooth.
             </p>
           </div>
 
           <div class="process-grid">
-            <div class="step-card">
+            <article class="card process-card">
               <div class="step-number">1</div>
               <h3>Discover</h3>
               <p>
-                We understand your brand, audience, style, and the exact outcome you want.
+                We learn your brand, audience, style, and message to create the right creative direction.
               </p>
-            </div>
+            </article>
 
-            <div class="step-card">
+            <article class="card process-card">
               <div class="step-number">2</div>
               <h3>Plan</h3>
               <p>
-                We build the concept, hook, pacing, and storyline around what performs best.
+                We map hooks, pacing, story beats, and visual style to maximize retention and impact.
               </p>
-            </div>
+            </article>
 
-            <div class="step-card">
+            <article class="card process-card">
               <div class="step-number">3</div>
               <h3>Edit</h3>
               <p>
-                We edit your footage with premium visuals, sound, motion graphics, and captions.
+                We shape your footage into polished clips with motion, captions, audio, and premium finishing.
               </p>
-            </div>
+            </article>
 
-            <div class="step-card">
+            <article class="card process-card">
               <div class="step-number">4</div>
               <h3>Deliver</h3>
               <p>
-                We optimize every reel for social platforms and deliver a polished final result.
+                Final reels are optimized for social publishing and ready to perform immediately.
               </p>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -939,25 +880,25 @@
           <div class="section-head">
             <h2>Simple pricing</h2>
             <p>
-              Flexible packages for creators, businesses, and growing brands.
+              Flexible options for creators, startups, and brands scaling content production.
             </p>
           </div>
 
           <div class="pricing-grid">
-            <div class="pricing-card">
+            <article class="card pricing-card">
               <span class="plan-name">Starter</span>
               <h3>4 Reels</h3>
               <div class="price">$399 <small>/month</small></div>
               <ul>
-                <li>Concept & scripting</li>
-                <li>Editing & captions</li>
-                <li>2 revisions</li>
-                <li>Social-ready export</li>
+                <li>Concept planning</li>
+                <li>Editing + captions</li>
+                <li>2 revision rounds</li>
+                <li>Social-ready exports</li>
               </ul>
               <a href="#contact" class="button secondary">Get Started</a>
-            </div>
+            </article>
 
-            <div class="pricing-card featured">
+            <article class="card pricing-card featured">
               <span class="plan-name">Growth</span>
               <h3>12 Reels</h3>
               <div class="price">$899 <small>/month</small></div>
@@ -965,23 +906,23 @@
                 <li>Everything in Starter</li>
                 <li>Monthly content strategy</li>
                 <li>Priority turnaround</li>
-                <li>Growth-focused creative</li>
+                <li>Performance-focused edits</li>
               </ul>
               <a href="#contact" class="button primary">Most Popular</a>
-            </div>
+            </article>
 
-            <div class="pricing-card">
+            <article class="card pricing-card">
               <span class="plan-name">Scale</span>
               <h3>Unlimited</h3>
               <div class="price">$1,799 <small>/month</small></div>
               <ul>
-                <li>Dedicated editor</li>
+                <li>Dedicated creative support</li>
                 <li>Campaign planning</li>
-                <li>Performance support</li>
-                <li>Custom creative cadence</li>
+                <li>Weekly optimization</li>
+                <li>Custom content cadence</li>
               </ul>
               <a href="#contact" class="button secondary">Book a Call</a>
-            </div>
+            </article>
           </div>
         </div>
       </section>
@@ -991,18 +932,16 @@
           <div class="section-head">
             <h2>Client feedback</h2>
             <p>
-              Trusted by brands and creators who want premium content that actually performs.
+              Trusted by brands and creators who want premium content and better engagement.
             </p>
           </div>
 
           <div class="testimonials-grid">
-            <article class="testimonial-card">
+            <article class="card testimonial-card">
               <div class="stars">★★★★★</div>
               <p>
-                “EditExpress gave our brand the premium look we were missing. Our engagement
-                jumped within days of posting the first reel.”
+                “EditExpress helped us transform our content into something premium and high-converting. The difference was immediate.”
               </p>
-
               <div class="person">
                 <div class="avatar">A</div>
                 <div>
@@ -1012,13 +951,11 @@
               </div>
             </article>
 
-            <article class="testimonial-card">
+            <article class="card testimonial-card">
               <div class="stars">★★★★★</div>
               <p>
-                “The storytelling and pacing were excellent. Their edits felt clean, luxury,
-                and social-first — exactly what our audience wanted.”
+                “Their edits feel clean, cinematic, and social-ready. It elevated our entire brand presence online.”
               </p>
-
               <div class="person">
                 <div class="avatar">J</div>
                 <div>
@@ -1028,13 +965,11 @@
               </div>
             </article>
 
-            <article class="testimonial-card">
+            <article class="card testimonial-card">
               <div class="stars">★★★★★</div>
               <p>
-                “Fast delivery, stunning visuals, and very easy communication. We got
-                a polished content system without the stress.”
+                “Fast communication, luxury aesthetic, and strong storytelling. We saw better retention almost instantly.”
               </p>
-
               <div class="person">
                 <div class="avatar">S</div>
                 <div>
@@ -1051,19 +986,16 @@
         <div class="container">
           <div class="cta-box">
             <div>
-              <h2>Ready to elevate your brand with premium reels?</h2>
+              <h2>Ready to make your reels unforgettable?</h2>
               <p>
-                Let EditExpress create content that looks luxurious, captures attention, and
-                helps your audience convert.
+                From brands to creators, EditExpress creates content that grabs attention and turns viewers into loyal followers.
               </p>
             </div>
 
-            <a
-              href="mailto:editexpress202@gmail.com"
-              class="button primary"
-            >
-              editexpress202@gmail.com
-            </a>
+            <div class="cta-actions">
+              <a href="tel:+919392535977" class="social-btn whatsapp">WhatsApp</a>
+              <a href="https://www.instagram.com/editexpress_2025" target="_blank" class="social-btn instagram">Instagram</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1088,14 +1020,14 @@
     </footer>
 
     <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
 
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
       });
 
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById('year').textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
